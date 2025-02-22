@@ -1,12 +1,26 @@
-import { useState } from "react";
+import { JSX, useState } from "react";
 import { motion } from "framer-motion";
 import { FaGithub, FaCode, FaDatabase, FaLink, FaTerminal, FaProjectDiagram, FaUser, FaEnvelope, FaDumbbell, FaSpa, FaCalculator, FaBlog, FaFire, FaMask } from "react-icons/fa";
-import { GiGrain } from "react-icons/gi"
+import { GiGrain } from "react-icons/gi";
 import { SiGo, SiJavascript, SiPython } from "react-icons/si";
 
+// Define types for profiles and projects
+interface Profile {
+  name: string;
+  description: string;
+  icon: JSX.Element;
+  link: string;
+}
 
+interface Project {
+  name: string;
+  description: string;
+  icon: JSX.Element;
+  link: string;
+  techStack: string[];  // Only defined in the Project type
+}
 
-const profiles = [
+const profiles: Profile[] = [
   {
     name: "GitHub",
     description: "I push all of my code here!",
@@ -45,7 +59,7 @@ const profiles = [
   },
 ];
 
-const projects = [
+const projects: Project[] = [
   {
     name: "Date.ai",
     description: "Bruh, you're literally looking at it right now.",
@@ -72,7 +86,7 @@ const projects = [
     description: "Web + ML based application that helps farmers to connect to market",
     icon: <GiGrain className="text-4xl text-white" />,
     link: "https://github.com/iamvbenz49/farm-network",
-    techStack: ["React", "Node.js", "MongoDB", "Flask", "Machine Learning","Tailwind CSS"],
+    techStack: ["React", "Node.js", "MongoDB", "Flask", "Machine Learning", "Tailwind CSS"],
   },
   {
     name: "GPS Coordinate Prediction",
@@ -121,7 +135,7 @@ const projects = [
     description: "No explanation needed!",
     icon: <FaCalculator className="text-4xl text-white" />,
     link: "https://github.com/iamvbenz49/flames-calculator",
-    techStack: ["HTML","CSS", "Javascript"],
+    techStack: ["HTML", "CSS", "Javascript"],
   },
   {
     name: "Blogging Site",
@@ -147,7 +161,7 @@ const projects = [
 ];
 
 const Experience: React.FC = () => {
-  const [activeTab, setActiveTab] = useState("projects");
+  const [activeTab, setActiveTab] = useState<"projects" | "profiles">("projects");
 
   return (
     <motion.div 
@@ -189,9 +203,9 @@ const Experience: React.FC = () => {
               <p className="text-gray-200">{item.description}</p>
 
               {/* Display Tech Stack if it's a Project */}
-              {activeTab === "projects" && item.techStack && (
+              {activeTab === "projects" && (item as Project).techStack && (
                 <div className="flex flex-wrap gap-2 mt-2">
-                  {item.techStack.map((tech, i) => (
+                  {(item as Project).techStack.map((tech, i) => (
                     <span key={i} className="bg-white/20 px-2 py-1 rounded-md text-sm">
                       {tech}
                     </span>

@@ -79,8 +79,8 @@ const BruceWayneArc: React.FC = () => {
               whileHover={{ scale: 1.3 }}
               animate={{ y: [0, -5, 0], transition: { repeat: Infinity, duration: 1.5 } }}
             ></motion.div>
-            <h3 className="text-lg font-semibold text-white text-center">{item.institution || item.company}</h3>
-            <p className="text-white/80 text-center">{item.degree || item.role}</p>
+            {/* <h3 className="text-lg font-semibold text-white text-center">{item.institution || item.company}</h3> */}
+            {/* <p className="text-white/80 text-center">{item.degree || item.role}</p> */}
             <span className="text-sm text-white/60">{item.year}</span>
           </motion.div>
         ))}
