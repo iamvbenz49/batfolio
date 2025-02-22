@@ -1,31 +1,76 @@
 import { motion } from "framer-motion";
-import ProfileImage from "../assets/ana_de_armas.jpg";
+import { FaGithub, FaLinkedin, FaXTwitter, FaInstagram, FaSpotify, FaYoutube } from "react-icons/fa6";
+import ProfileImage from "../assets/batman.jpg";
 
 const LiterallyMe: React.FC = () => {
   return (
     <motion.div 
-      className="w-[95%] h-[85vh] p-5 bg-gradient-to-r from-[#6A11CB] to-[#2575FC]
-       rounded-xl flex items-center justify-center gap-6 mt-4 mx-auto shadow-lg"
+      className="w-[95%] h-[85vh] p-8 bg-gradient-to-r from-[#6A11CB] to-[#2575FC]
+       rounded-2xl flex flex-col sm:flex-row items-center justify-center gap-14 mt-6 mx-auto shadow-2xl
+       backdrop-blur-xl bg-opacity-75 border border-white/20"
       initial={{ opacity: 0, scale: 0.8 }}
       animate={{ opacity: 1, scale: 1 }}
-      transition={{ duration: 0.5 }}
-      whileHover={{ scale: 1.02, boxShadow: "0px 10px 25px rgba(0, 0, 0, 0.3)" }}
+      transition={{ duration: 0.6 }}
+      whileHover={{ scale: 1.02, boxShadow: "0px 12px 30px rgba(0, 0, 0, 0.4)" }}
     >
       {/* Profile Image */}
-      <img 
+      <motion.img 
         src={ProfileImage} 
         alt="Profile" 
-        className="w-36 h-36 sm:w-44 sm:h-44 rounded-full border-4 border-white shadow-lg" 
+        className="w-40 h-40 sm:w-48 sm:h-48 rounded-full border-4 border-white shadow-xl object-cover" 
+        whileHover={{ scale: 1.08 }}
       />
       
       {/* Name & Title */}
-      <div className="text-left text-white">
-        <h1 className="mt-4 text-4xl font-extrabold text-white drop-shadow-lg tracking-wide">
+      <div className="text-center sm:text-left text-white max-w-md">
+        <h1 className="text-5xl font-bold text-white drop-shadow-lg tracking-wide">
           Sham Vijay V
         </h1>
-        <p className="mt-2 text-lg font-medium text-gray-200 drop-shadow-md">
+        <p className="mt-2 text-xl font-medium text-gray-300 drop-shadow-md">
           Chasing the term Engineering
         </p>
+
+        {/* Quote Section */}
+        <motion.p 
+          className="mt-5 italic text-lg text-gray-200 font-semibold border-l-4 pl-4 border-white"
+          initial={{ opacity: 0, x: -20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+        >
+          "You can Just Do Things"
+        </motion.p>
+
+        {/* Social Icons */}
+        <div className="flex justify-center sm:justify-start gap-6 mt-5">
+          {[{
+            link: "https://github.com/iamvbenz49", icon: FaGithub },
+            { link: "https://www.linkedin.com/in/sham-vijay/", icon: FaLinkedin },
+            { link: "https://x.com/batmanwhocodes", icon: FaXTwitter },
+            { link: "https://www.youtube.com/watch?v=dQw4w9WgXcQ", icon: FaInstagram },
+            { link: "https://open.spotify.com/playlist/5tFBbu1UElgjr2petbuHF9?si=SUoyJLerSZiURNi6zrRrdg", icon: FaSpotify },
+            { link: "https://www.youtube.com/@vijaybenz9741", icon: FaYoutube }]
+            .map(({ link, icon: Icon }, index) => (
+              <motion.a 
+                key={index}
+                href={link} 
+                target="_blank" 
+                className="text-gray-300 hover:text-white transition duration-300"
+                whileHover={{ scale: 1.2 }}
+              >
+                <Icon size={32} />
+              </motion.a>
+          ))}
+        </div>
+
+        {/* Contact Button */}
+        <motion.a 
+          href="mailto:your-email@example.com"
+          className="mt-6 inline-block px-6 py-3 bg-white text-indigo-600 font-bold rounded-lg shadow-lg
+                     hover:bg-indigo-500 hover:text-white transition duration-300"
+          whileHover={{ scale: 1.07 }}
+        >
+          Let's Connect
+        </motion.a>
       </div>
     </motion.div>
   );

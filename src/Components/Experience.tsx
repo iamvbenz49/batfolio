@@ -189,24 +189,33 @@ const Experience: React.FC = () => {
         </button>
       </div>
 
-      <div className="w-full max-w-5xl h-[60vh] overflow-y-auto scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-600">
+      <motion.div
+        key={activeTab}
+        className="w- max-w-3xl bg-white/10 backdrop-blur-md border border-white/20 shadow-lg rounded-lg p-6 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-transparent"
+        initial={{ opacity: 0, x: activeTab === "projects" ? -100 : 100 }}
+        animate={{ opacity: 1, x: 0 }}
+        exit={{ opacity: 0, x: activeTab === "profiles" ? 100 : -100 }}
+        transition={{ duration: 0.5 }}
+      >
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {(activeTab === "projects" ? projects : profiles).map((item, index) => (
             <motion.div
-              key={index}
-              className="bg-white/10 backdrop-blur-md p-5 rounded-xl shadow-md hover:shadow-xl 
-              transition-all text-white flex flex-col gap-3 border border-white/20"
-              whileHover={{ scale: 1.05 }}
-            >
+            key={index}
+            className="relative flex flex-col items-center bg-white/10 backdrop-blur-md border border-white/20 shadow-lg rounded-lg p-5 transition-transform duration-300 hover:scale-105 hover:border-purple-400 mb-4"
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: index * 0.2 }}
+            whileHover={{ scale: 1 }}
+          >
               {item.icon}
-              <h3 className="text-xl font-semibold">{item.name}</h3>
+              <h3 className="text-xl text-white font-semibold">{item.name}</h3>
               <p className="text-gray-200">{item.description}</p>
 
               {/* Display Tech Stack if it's a Project */}
               {activeTab === "projects" && (item as Project).techStack && (
                 <div className="flex flex-wrap gap-2 mt-2">
                   {(item as Project).techStack.map((tech, i) => (
-                    <span key={i} className="bg-white/20 px-2 py-1 rounded-md text-sm">
+                    <span key={i} className="bg-white/20 text-white px-2 py-1 rounded-md text-sm">
                       {tech}
                     </span>
                   ))}
@@ -219,7 +228,7 @@ const Experience: React.FC = () => {
             </motion.div>
           ))}
         </div>
-      </div>
+      </motion.div>
     </motion.div>
   );
 };
