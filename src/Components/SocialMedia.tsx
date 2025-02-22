@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { motion } from "framer-motion";
 import { FaGithub, FaCode, FaTerminal, FaLink, FaTwitter, FaLinkedin, FaInstagram } from "react-icons/fa";
 
