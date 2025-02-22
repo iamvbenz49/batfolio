@@ -31,7 +31,6 @@ const NavItem: React.FC<NavItemProps> = ({ to, label }) => (
     <Link to={to} className="text-white font-semibold text-lg tracking-wide uppercase transition duration-300">
       {label}
     </Link>
-    {/* Animated Hover Underline */}
     <motion.div 
       className="absolute left-0 bottom-0 w-0 h-[2px] bg-white rounded-full transition-all duration-300 group-hover:w-full"
     />
