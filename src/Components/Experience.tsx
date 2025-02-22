@@ -62,7 +62,7 @@ const profiles: Profile[] = [
 const projects: Project[] = [
   {
     name: "Date.ai",
-    description: "Bruh, you're literally looking at it right now.",
+    description: "Work in Progress",
     icon: <FaEnvelope className="text-4xl text-white" />,
     link: "https://github.com/iamvbenz49/date-dot-ai",
     techStack: [],
