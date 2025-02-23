@@ -1,8 +1,9 @@
-import { JSX, useState } from "react";
+import { JSX, useContext, useState } from "react";
 import { motion } from "framer-motion";
 import { FaGithub, FaCode, FaDatabase, FaLink, FaTerminal, FaProjectDiagram, FaUser, FaEnvelope, FaDumbbell, FaSpa, FaCalculator, FaBlog, FaFire, FaMask } from "react-icons/fa";
 import { GiGrain } from "react-icons/gi";
 import { SiGo, SiJavascript, SiPython } from "react-icons/si";
+import { ModeContext } from "../App";
 
 // Define types for profiles and projects
 interface Profile {
@@ -162,13 +163,20 @@ const projects: Project[] = [
 
 const Experience: React.FC = () => {
   const [activeTab, setActiveTab] = useState<"projects" | "profiles">("projects");
-
+  const context = useContext(ModeContext);
+    
+  if (!context) {
+    throw new Error("BruceWayneArc must be used within a ModeContext.Provider");
+  }
+  
+  const { color } = context;
   return (
-    <motion.div 
-      className="w-[95%] h-[85vh] p-5 bg-gradient-to-r from-[#6A11CB] to-[#2575FC]
-       rounded-xl flex flex-col items-center justify-center gap-6 mt-4 mx-auto shadow-xl"
+    <motion.div
+      className={`w-[95%] h-[85vh] p-5 rounded-xl flex flex-col items-center justify-center gap-6 mt-4 mx-auto shadow-xl 
+        ${color === "blue" ? "bg-gradient-to-r from-[#6A11CB] to-[#2575FC]" : "bg-gradient-to-r from-[#FF0080] to-[#FF66B2]"}`}
       initial={{ opacity: 0, scale: 0.8 }}
       animate={{ opacity: 1, scale: 1 }}
+      whileHover={{scale:1.02}}
       transition={{ duration: 0.5 }}
     >
 

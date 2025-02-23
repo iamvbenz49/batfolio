@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { motion } from "framer-motion";
 import { FaGraduationCap, FaChalkboardTeacher, FaBriefcase } from "react-icons/fa";
-
+import { ModeContext } from "../App";
 // Type Definitions
 type Education = {
   id: number;
@@ -48,23 +48,30 @@ const experience: Experience[] = [
   { id: 2, company: "GirlScript Summer of Code", role: "Open Source Contributor", year: "June 2023" },
 ];
 
-// Tab Component
+
 const BruceWayneArc: React.FC = () => {
+  const context = useContext(ModeContext);
+  
+  if (!context) {
+    throw new Error("BruceWayneArc must be used within a ModeContext.Provider");
+  }
+
+  const { color } = context;
   const [activeTab, setActiveTab] = useState<"education" | "courses" | "experience">("experience");
 
-  // Mapping Active Tab to Data
   const data = activeTab === "education" ? formalEducation : activeTab === "courses" ? courses : experience;
-
+  
   return (
     <motion.div
-      className="w-[95%] h-[85vh] p-5 bg-gradient-to-r from-[#6A11CB] to-[#2575FC]
-       rounded-xl flex flex-col items-center justify-center gap-6 mt-4 mx-auto shadow-xl"
+      className={`w-[95%] h-[85vh] p-5 rounded-xl flex flex-col items-center justify-center gap-6 mt-4 mx-auto shadow-xl 
+        ${color === "blue" ? "bg-gradient-to-r from-[#6A11CB] to-[#2575FC]" : "bg-gradient-to-r from-[#FF0080] to-[#FF66B2]"}`}
       initial={{ opacity: 0, scale: 0.8 }}
       animate={{ opacity: 1, scale: 1 }}
+      whileHover={{scale:1.02}}
       transition={{ duration: 0.5 }}
     >
       {/* Tab Buttons */}
-      <div className="flex justify-center gap-6 bg-white/10 p-3 rounded-lg">
+      <div className="flex justify-center gap-4 sm:gap-6 bg-white/10 p-3 rounded-lg">
         {[
           { id: "experience", label: "Experience", icon: <FaBriefcase /> },
           { id: "education", label: "Education", icon: <FaGraduationCap /> },
@@ -72,16 +79,16 @@ const BruceWayneArc: React.FC = () => {
         ].map(({ id, label, icon }) => (
           <button
             key={id}
-            className={`px-5 py-2 rounded-md flex items-center gap-2 transition-all duration-300
+            className={`px-4 sm:px-5 py-2 rounded-md flex items-center gap-2 transition-all duration-300
               ${activeTab === id ? "bg-white text-black shadow-md" : "bg-white/20 text-white hover:bg-white/30"}`}
             onClick={() => setActiveTab(id as "education" | "courses" | "experience")}
           >
-            {icon} {label}
+            <span className="text-lg">{icon}</span>
+            <span className="hidden sm:inline">{label}</span> 
           </button>
         ))}
       </div>
 
-      {/* Content Section */}
       <motion.div
         key={activeTab}
         className="w-full max-w-3xl bg-white/10 backdrop-blur-md border border-white/20 shadow-lg rounded-lg p-6 
@@ -101,7 +108,6 @@ const BruceWayneArc: React.FC = () => {
             transition={{ duration: 0.5, delay: index * 0.2 }}
             whileHover={{ scale: 1.03 }}
           >
-            {/* Conditional Rendering for Different Data Types */}
             <h3 className="text-lg font-semibold text-white">
               {"degree" in item ? item.degree : item.company}
             </h3>

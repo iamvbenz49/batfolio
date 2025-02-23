@@ -1,19 +1,30 @@
 import { motion } from "framer-motion";
 import { FaGithub, FaLinkedin, FaXTwitter, FaInstagram, FaSpotify, FaYoutube } from "react-icons/fa6";
 import ProfileImage from "../assets/batman.jpg";
+import { useContext } from "react";
+import { ModeContext } from "../App";
+import { Theme } from "../enums/theme";
 
 const LiterallyMe: React.FC = () => {
+  const context = useContext(ModeContext); 
+  
+  if (!context) {
+    throw new Error("ModeContext must be used within a ModeContext.Provider");
+  }
+  const {color} = context;
+
   return (
     <motion.div 
-      className="w-[95%] h-[85vh] p-8 bg-gradient-to-r from-[#6A11CB] to-[#2575FC]
-       rounded-2xl flex flex-col sm:flex-row items-center justify-center gap-14 mt-6 mx-auto shadow-2xl
-       backdrop-blur-xl bg-opacity-75 border border-white/20"
+      className={`w-[95%] h-[85vh] p-8 rounded-2xl flex flex-col sm:flex-row items-center justify-center gap-14 
+      mt-6 mx-auto shadow-2xl backdrop-blur-xl bg-opacity-75 border border-white/20 
+      transition-all duration-500 
+      ${color === Theme.BLUE ? "bg-gradient-to-r from-[#6A11CB] to-[#2575FC]" : "bg-gradient-to-r from-[#FF0080] to-[#FF66B2]"}`}
       initial={{ opacity: 0, scale: 0.8 }}
       animate={{ opacity: 1, scale: 1 }}
-      transition={{ duration: 0.6 }}
-      whileHover={{ scale: 1.02, boxShadow: "0px 12px 30px rgba(0, 0, 0, 0.4)" }}
+      whileHover={{scale:1.02}}
+      transition={{ duration: 0.5 }}
     >
-      {/* Profile Image */}
+
       <motion.img 
         src={ProfileImage} 
         alt="Profile" 
@@ -21,7 +32,7 @@ const LiterallyMe: React.FC = () => {
         whileHover={{ scale: 1.08 }}
       />
       
-      {/* Name & Title */}
+
       <div className="text-center sm:text-left text-white max-w-md">
         <h1 className="text-5xl font-bold text-white drop-shadow-lg tracking-wide">
           Sham Vijay V
@@ -46,7 +57,7 @@ const LiterallyMe: React.FC = () => {
             link: "https://github.com/iamvbenz49", icon: FaGithub },
             { link: "https://www.linkedin.com/in/sham-vijay/", icon: FaLinkedin },
             { link: "https://x.com/batmanwhocodes", icon: FaXTwitter },
-            { link: "https://www.youtube.com/watch?v=dQw4w9WgXcQ", icon: FaInstagram },
+            { link: "https://www.instagram.com/", icon: FaInstagram },
             { link: "https://open.spotify.com/playlist/5tFBbu1UElgjr2petbuHF9?si=SUoyJLerSZiURNi6zrRrdg", icon: FaSpotify },
             { link: "https://www.youtube.com/@vijaybenz9741", icon: FaYoutube }]
             .map(({ link, icon: Icon }, index) => (
@@ -64,7 +75,7 @@ const LiterallyMe: React.FC = () => {
 
         {/* Contact Button */}
         <motion.a 
-          href="mailto:your-email@example.com"
+          href="mailto:iamvbenz1@example.com"
           className="mt-6 inline-block px-6 py-3 bg-white text-indigo-600 font-bold rounded-lg shadow-lg
                      hover:bg-indigo-500 hover:text-white transition duration-300"
           whileHover={{ scale: 1.07 }}
