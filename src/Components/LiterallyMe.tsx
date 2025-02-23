@@ -80,7 +80,7 @@ const LiterallyMe: React.FC = () => {
                      hover:bg-indigo-500 hover:text-white transition duration-300"
           whileHover={{ scale: 1.07 }}
         >
-          Let's Connect
+          Hire Me
         </motion.a>
       </div>
     </motion.div>
