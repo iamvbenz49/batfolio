@@ -148,7 +148,7 @@ const projects: Project[] = [
     name: "TinDog",
     description: "Tinder for Dogs",
     icon: <FaFire className="text-4xl text-white" />,
-    link: "https://github.com/iamvbenz49/react-blog-website",
+    link: "https://github.com/iamvbenz49/Tindog",
     techStack: ["HTML", "CSS"],
   },
   {
