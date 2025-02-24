@@ -58,7 +58,6 @@ const LiterallyMe: React.FC = () => {
             { link: "https://www.linkedin.com/in/sham-vijay/", icon: FaLinkedin },
             { link: "https://x.com/batmanwhocodes", icon: FaXTwitter },
             { link: "https://youtu.be/dQw4w9WgXcQ?si=23JA489wb2mbebRY", icon: FaInstagram },
-            { link: "https://open.spotify.com/playlist/5tFBbu1UElgjr2petbuHF9?si=SUoyJLerSZiURNi6zrRrdg", icon: FaSpotify },
             { link: "https://www.youtube.com/@vijaybenz9741", icon: FaYoutube }]
             .map(({ link, icon: Icon }, index) => (
               <motion.a 
