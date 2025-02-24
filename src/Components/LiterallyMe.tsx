@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { FaGithub, FaLinkedin, FaXTwitter, FaInstagram, FaSpotify, FaYoutube } from "react-icons/fa6";
+import { FaGithub, FaLinkedin, FaXTwitter, FaInstagram, FaYoutube } from "react-icons/fa6";
 import ProfileImage from "../assets/batman.jpg";
 import { useContext } from "react";
 import { ModeContext } from "../App";
