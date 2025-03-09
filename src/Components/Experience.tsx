@@ -69,6 +69,13 @@ const projects: Project[] = [
     techStack: [],
   },
   {
+    name: "100x Fitness",
+    description: "Gen AI Powered Fitness Tracker",
+    icon: <FaDumbbell className="text-4xl text-white" />,
+    link: "https://github.com/iamvbenz49/100xFitness",
+    techStack: ["ReactJS", "Tailwind CSS", "Typescript", "ExpressJS", "PostgreSQL", "NodeJS", "Prisma"],
+  },
+  {
     name: "Batfolio",
     description: "Bruh, You're lookin at it right now",
     icon: <FaMask className="text-4xl text-white" />,
