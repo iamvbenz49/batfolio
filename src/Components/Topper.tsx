@@ -36,7 +36,7 @@ const Topper: React.FC = () => {
         className="flex items-center gap-2 px-4 py-2 bg-white text-black rounded-lg shadow-md cursor-pointer transition-all duration-300"
       >
         <FaPaintBrush className="text-xl" />
-        <span className="hidden md:inline">{color === Theme.BLUE ? "Light Mode" : "Dark Mode"}</span>
+        <span className="hidden md:inline">{color === Theme.BLUE ? "Dark Mode" : "Light Mode"}</span>
       </motion.button>
     </motion.nav>
   );
