@@ -2,6 +2,7 @@ import { useContext, useState } from "react";
 import { motion } from "framer-motion";
 import { FaGraduationCap, FaChalkboardTeacher, FaBriefcase } from "react-icons/fa";
 import { ModeContext } from "../App";
+
 // Type Definitions
 type Education = {
   id: number;
@@ -48,10 +49,9 @@ const experience: Experience[] = [
   { id: 2, company: "GirlScript Summer of Code", role: "Open Source Contributor", year: "June 2023" },
 ];
 
-
 const BruceWayneArc: React.FC = () => {
   const context = useContext(ModeContext);
-  
+
   if (!context) {
     throw new Error("BruceWayneArc must be used within a ModeContext.Provider");
   }
@@ -60,14 +60,15 @@ const BruceWayneArc: React.FC = () => {
   const [activeTab, setActiveTab] = useState<"education" | "courses" | "experience">("experience");
 
   const data = activeTab === "education" ? formalEducation : activeTab === "courses" ? courses : experience;
-  
+
   return (
     <motion.div
       className={`w-[95%] h-[85vh] p-5 rounded-xl flex flex-col items-center justify-center gap-6 mt-4 mx-auto shadow-xl 
-        ${color === "blue" ? "bg-gradient-to-r from-[#6A11CB] to-[#2575FC]" : "bg-gradient-to-r from-[#FF0080] to-[#FF66B2]"}`}
+        ${color === "blue" ? "bg-gradient-to-r from-[#6A11CB] to-[#2575FC]"
+          : "bg-gradient-to-r from-gray-900 to-gray-800"}`}
       initial={{ opacity: 0, scale: 0.8 }}
       animate={{ opacity: 1, scale: 1 }}
-      whileHover={{scale:1.02}}
+      whileHover={{ scale: 1.02 }}
       transition={{ duration: 0.5 }}
     >
       {/* Tab Buttons */}
@@ -84,11 +85,12 @@ const BruceWayneArc: React.FC = () => {
             onClick={() => setActiveTab(id as "education" | "courses" | "experience")}
           >
             <span className="text-lg">{icon}</span>
-            <span className="hidden sm:inline">{label}</span> 
+            <span className="hidden sm:inline">{label}</span>
           </button>
         ))}
       </div>
 
+      {/* Content Area */}
       <motion.div
         key={activeTab}
         className="w-full max-w-3xl bg-white/10 backdrop-blur-md border border-white/20 shadow-lg rounded-lg p-6 

@@ -1,11 +1,13 @@
 import { JSX, useContext, useState } from "react";
 import { motion } from "framer-motion";
-import { FaGithub, FaCode, FaDatabase, FaLink, FaTerminal, FaProjectDiagram, FaUser, FaEnvelope, FaDumbbell, FaSpa, FaCalculator, FaBlog, FaFire, FaMask } from "react-icons/fa";
+import {
+  FaGithub, FaCode, FaDatabase, FaLink, FaTerminal, FaProjectDiagram, FaUser,
+  FaEnvelope, FaDumbbell, FaSpa, FaCalculator, FaBlog, FaFire, FaMask
+} from "react-icons/fa";
 import { GiGrain } from "react-icons/gi";
 import { SiGo, SiJavascript, SiPython } from "react-icons/si";
 import { ModeContext } from "../App";
 
-// Define types for profiles and projects
 interface Profile {
   name: string;
   description: string;
@@ -18,7 +20,7 @@ interface Project {
   description: string;
   icon: JSX.Element;
   link: string;
-  techStack: string[];  // Only defined in the Project type
+  techStack: string[];
 }
 
 const profiles: Profile[] = [
@@ -171,22 +173,25 @@ const projects: Project[] = [
 const Experience: React.FC = () => {
   const [activeTab, setActiveTab] = useState<"projects" | "profiles">("projects");
   const context = useContext(ModeContext);
-    
+
   if (!context) {
     throw new Error("BruceWayneArc must be used within a ModeContext.Provider");
   }
-  
+
   const { color } = context;
+  const isBlue = color === "blue";
+
   return (
     <motion.div
       className={`w-[95%] h-[85vh] p-5 rounded-xl flex flex-col items-center justify-center gap-6 mt-4 mx-auto shadow-xl 
-        ${color === "blue" ? "bg-gradient-to-r from-[#6A11CB] to-[#2575FC]" : "bg-gradient-to-r from-[#FF0080] to-[#FF66B2]"}`}
+        ${isBlue
+          ? "bg-gradient-to-r from-[#6A11CB] to-[#2575FC]"
+          : "bg-gradient-to-r from-gray-900 to-gray-800"}`}
       initial={{ opacity: 0, scale: 0.8 }}
       animate={{ opacity: 1, scale: 1 }}
-      whileHover={{scale:1.02}}
+      whileHover={{ scale: 1.02 }}
       transition={{ duration: 0.5 }}
     >
-
       <div className="flex gap-6 bg-white/10 p-2 rounded-lg">
         <button
           className={`px-4 py-2 rounded-md flex items-center gap-2 
@@ -206,7 +211,7 @@ const Experience: React.FC = () => {
 
       <motion.div
         key={activeTab}
-        className="w- max-w-3xl bg-white/10 backdrop-blur-md border border-white/20 shadow-lg rounded-lg p-6 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-transparent"
+        className="w-full max-w-6xl bg-white/10 backdrop-blur-md border border-white/20 shadow-lg rounded-lg p-6 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-transparent"
         initial={{ opacity: 0, x: activeTab === "projects" ? -100 : 100 }}
         animate={{ opacity: 1, x: 0 }}
         exit={{ opacity: 0, x: activeTab === "profiles" ? 100 : -100 }}
@@ -215,18 +220,17 @@ const Experience: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {(activeTab === "projects" ? projects : profiles).map((item, index) => (
             <motion.div
-            key={index}
-            className="relative flex flex-col items-center bg-white/10 backdrop-blur-md border border-white/20 shadow-lg rounded-lg p-5 transition-transform duration-300 hover:scale-105 hover:border-purple-400 mb-4"
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: index * 0.2 }}
-            whileHover={{ scale: 1 }}
-          >
+              key={index}
+              className="relative flex flex-col items-center bg-white/10 backdrop-blur-md border border-white/20 shadow-lg rounded-lg p-5 transition-transform duration-300 hover:scale-105 hover:border-purple-400 mb-4"
+              initial={{ opacity: 0, y: 50 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              whileHover={{ scale: 1 }}
+            >
               {item.icon}
               <h3 className="text-xl text-white font-semibold">{item.name}</h3>
               <p className="text-gray-200">{item.description}</p>
 
-              {/* Display Tech Stack if it's a Project */}
               {activeTab === "projects" && (item as Project).techStack && (
                 <div className="flex flex-wrap gap-2 mt-2">
                   {(item as Project).techStack.map((tech, i) => (
@@ -237,7 +241,12 @@ const Experience: React.FC = () => {
                 </div>
               )}
 
-              <a href={item.link} target="_blank" className="text-white hover:text-gray-300 flex items-center gap-1 mt-2">
+              <a
+                href={item.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-white hover:text-gray-300 flex items-center gap-1 mt-2"
+              >
                 Visit <FaLink />
               </a>
             </motion.div>

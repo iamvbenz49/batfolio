@@ -17,15 +17,16 @@ const Topper: React.FC = () => {
   return (
     <motion.nav 
       className={`w-[95%] py-4 px-6 rounded-xl flex items-center justify-center gap-12 mt-6 mx-auto shadow-lg transition-all duration-500
-      ${color === Theme.BLUE ? 'bg-gradient-to-r from-[#6A11CB] to-[#2575FC]' : 'bg-gradient-to-r from-[#FF0080] to-[#FF66B2]'}`}
+      ${color === Theme.BLUE ? "bg-gradient-to-r from-[#6A11CB] to-[#2575FC]"
+          : "bg-gradient-to-r from-gray-900 to-gray-800"}`}
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
       whileHover={{ scale:1.02 }}
       transition={{ duration: 0.5 }}
     >
-      <NavItem to="/" label="Literally Me" icon={<FaUser />} />
-      <NavItem to="/coding" label="Coding & Stuff" icon={<FaCode />} />
-      <NavItem to="/arc" label="Bruce Wayne Arc" icon={<FaMask />} />
+      <NavItem to="/" label="About" icon={<FaUser />} />
+      <NavItem to="/coding" label="Work" icon={<FaCode />} />
+      <NavItem to="/arc" label="Education" icon={<FaMask />} />
       
       {/* Mode Toggle Button */}
       <motion.button 
@@ -35,7 +36,7 @@ const Topper: React.FC = () => {
         className="flex items-center gap-2 px-4 py-2 bg-white text-black rounded-lg shadow-md cursor-pointer transition-all duration-300"
       >
         <FaPaintBrush className="text-xl" />
-        <span className="hidden md:inline">{color === Theme.BLUE ? "Pink Mode" : "Blue Mode"}</span>
+        <span className="hidden md:inline">{color === Theme.BLUE ? "Light Mode" : "Dark Mode"}</span>
       </motion.button>
     </motion.nav>
   );

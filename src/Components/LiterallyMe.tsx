@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { FaGithub, FaLinkedin, FaXTwitter, FaInstagram, FaYoutube } from "react-icons/fa6";
-import ProfileImage from "../assets/batman.jpg";
+import ProfileImage from "../assets/nerd.jpg";
 import { useContext } from "react";
 import { ModeContext } from "../App";
 import { Theme } from "../enums/theme";
@@ -18,7 +18,8 @@ const LiterallyMe: React.FC = () => {
       className={`w-[95%] h-[85vh] p-8 rounded-2xl flex flex-col sm:flex-row items-center justify-center gap-14 
       mt-6 mx-auto shadow-2xl backdrop-blur-xl bg-opacity-75 border border-white/20 
       transition-all duration-500 
-      ${color === Theme.BLUE ? "bg-gradient-to-r from-[#6A11CB] to-[#2575FC]" : "bg-gradient-to-r from-[#FF0080] to-[#FF66B2]"}`}
+      ${color === Theme.BLUE ? "bg-gradient-to-r from-[#6A11CB] to-[#2575FC]"
+          : "bg-gradient-to-r from-gray-900 to-gray-800"}`}
       initial={{ opacity: 0, scale: 0.8 }}
       animate={{ opacity: 1, scale: 1 }}
       whileHover={{scale:1.02}}
@@ -56,7 +57,7 @@ const LiterallyMe: React.FC = () => {
           {[{
             link: "https://github.com/iamvbenz49", icon: FaGithub },
             { link: "https://www.linkedin.com/in/sham-vijay/", icon: FaLinkedin },
-            { link: "https://x.com/batmanwhocodes", icon: FaXTwitter },
+            { link: "https://x.com/iamvbenz1", icon: FaXTwitter },
             { link: "https://youtu.be/dQw4w9WgXcQ?si=23JA489wb2mbebRY", icon: FaInstagram },
             { link: "https://www.youtube.com/@vijaybenz9741", icon: FaYoutube }]
             .map(({ link, icon: Icon }, index) => (
@@ -74,7 +75,7 @@ const LiterallyMe: React.FC = () => {
 
         {/* Contact Button */}
         <motion.a 
-          href="mailto:iamvbenz1@example.com"
+          href="mailto:iamvbenz1@gmail.com"
           className="mt-6 inline-block px-6 py-3 bg-white text-indigo-600 font-bold rounded-lg shadow-lg
                      hover:bg-indigo-500 hover:text-white transition duration-300"
           whileHover={{ scale: 1.07 }}
